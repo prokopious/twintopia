@@ -1,0 +1,33 @@
+{
+  "name": "next-netlify-starter",
+  "version": "0.5.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3005",
+    "build": "next build",
+    "export": "next export"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "components": "^0.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "mathjax": "^3.2.0",
+    "next": "^12.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-markdown": "^7.1.1",
+    "rehype-react": "^7.0.3",
+    "remark-math": "^5.1.1",
+    "remark-parse": "^10.0.1",
+    "remark-react": "^9.0.1",
+    "remark-rehype": "^10.1.0",
+    "styled": "^1.0.0",
+    "styled-components": "^5.3.3",
+    "unified": "^10.1.1"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.0.0-beta.12"
+  }
+}
