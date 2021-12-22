@@ -1,4 +1,3 @@
-import { PresignedPost } from "aws-sdk/clients/s3"
 import { useRef, useState } from "react"
 import PostList2 from "./PostList2"
 
