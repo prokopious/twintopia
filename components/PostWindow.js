@@ -25,6 +25,9 @@ export default function PreviewWindow(props) {
         .menu-container {
           position: relative;
           margin: 10px;
+    
+          z-index: 999;
+          width: 90vw;
         }
         .menu {
           background: #ffffff;
@@ -73,7 +76,7 @@ export default function PreviewWindow(props) {
           background-color: rgb(255, 255, 255);
           padding: 5px 10px;
           border: transparent;
-        
+          display: inline;
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);
   vertical-align: middle;

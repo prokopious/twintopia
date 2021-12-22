@@ -1,41 +1,50 @@
 import { useState, createContext, useEffect, useContext } from "react"
-import { getStorageItem, setStorageItem } from '../lib/storage.js'
+import { getStorageItem, setStorageItem } from "../lib/storage.js"
 export const StatusContext = createContext()
-const CART_STATE_KEY = 'cart';
+const CART_STATE_KEY = "cart"
 
-const stuff = {
+const defaultForms = {
   details: {
-    body: "this is bullshit",
+    body: "",
     slug: "",
     title: "",
     author: "",
     image: "",
   },
 }
-console.log("top of page")
+
 export function useLogin() {
   const [status, setStatus] = useState(false)
-  const [forms, setForms] = useState(stuff)
-  const [edit, setEdit] = useState(stuff)
+  const [forms, setForms] = useState(defaultForms)
+  const [edit, setEdit] = useState(defaultForms)
 
-  
   useEffect(() => {
-    const data = getStorageItem(CART_STATE_KEY);
-    if ( data ) {
-      updateForms(data);
+    const data = getStorageItem("cart")
+    if (data) {
+      setForms(data)
     }
-  }, []);
+    const d = getStorageItem("edit")
+    if (d) {
+      setEdit(d)
+    }
+  }, [])
 
   useEffect(() => {
-    setStorageItem(CART_STATE_KEY, forms);
-  }, [forms]);
-
+      if (forms !== defaultForms)
+      setStorageItem("cart", forms)
+      if (edit !== defaultForms)
+      setStorageItem("edit", edit)
+  }, [forms, edit])
 
   function updateForms(details) {
-    console.log("shit")
     setForms(details)
     let forms = details
     return forms
+  }
+  function updateEdit(details) {
+    setEdit(details)
+    let forms = details
+    return edit
   }
   function setLogin() {
     setStatus(true)
@@ -48,12 +57,14 @@ export function useLogin() {
   return {
     forms,
     status,
+    edit,
+    updateEdit,
     setLogout,
     setLogin,
     updateForms,
   }
 }
 export function useStatus() {
-  const crap = useContext(StatusContext);
-  return crap;
+  const crap = useContext(StatusContext)
+  return crap
 }

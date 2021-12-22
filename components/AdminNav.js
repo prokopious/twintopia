@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react"
 import jwt_decode from "jwt-decode"
 import router from "next/router"
 import { useStatus, useLogin } from "../hooks/use-stuff"
-import PostWindow from "../components/PostWindow"
+import PreviewWindow from "../components/PreviewWindow"
 
 export default function AdminNav() {
   const [token, setToken] = useState(null)
@@ -37,9 +37,7 @@ export default function AdminNav() {
   }, [setToken, setLogout])
 
   const logout = () => {
-    router
-      .push("http://www.localhost:3005/login")
-
+    router.push("http://www.localhost:3005/login")
   }
 
   return (
@@ -57,6 +55,7 @@ export default function AdminNav() {
                 <a>Create</a>
               </Link>
             </div>
+      
 
             <div ref={ref} id="l">
               <div onClick={logout}>

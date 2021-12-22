@@ -1,6 +1,5 @@
-import { PresignedPost } from "aws-sdk/clients/s3"
 import { useRef, useState } from "react"
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown"
 
 export default function PreviewWindow(props) {
   const dropdownRef = useRef(null)
@@ -12,9 +11,9 @@ export default function PreviewWindow(props) {
       <div className="menu-container">
         <button onClick={onClick} className="menu-trigger">
           <span>Preview</span>
-     
         </button>
-        <div id="preview"
+        <div
+          id="preview"
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"}`}
         >
@@ -46,54 +45,39 @@ export default function PreviewWindow(props) {
           opacity: 1;
           visibility: visible;
           transform: translateY(0);
+          display: inline;
         }
 
         #window {
-            width: 100%
+          width: 100%;
         }
 
-        .menu ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .menu li {
-          border-bottom: 1px solid #dddddd;
-        }
-
-        .menu li a {
-          text-decoration: none;
-          color: #333333;
-          padding: 15px 20px;
-          display: block;
-        }
         .menu-trigger {
-            border-radius: 3px;
+          border-radius: 3px;
           background-color: rgb(255, 255, 255);
           padding: 5px 10px;
+          display: inline;
           border: transparent;
-        
+
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);
-  vertical-align: middle;
-  
-}
+          vertical-align: middle;
+        }
 
-.menu-trigger:hover {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-}
+        .menu-trigger:hover {
+          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        }
 
-.menu-trigger span {
-  font-weight: 700;
-  vertical-align: middle;
-  font-size: 14px;
-  margin: 0 10px;
-}
+        .menu-trigger span {
+          font-weight: 700;
+          vertical-align: middle;
+          font-size: 14px;
+          margin: 0 10px;
+        }
 
-.menu-trigger img {
-  border-radius: 4px;
-}
+        .menu-trigger img {
+          border-radius: 4px;
+        }
       `}</style>
     </>
   )

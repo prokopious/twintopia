@@ -2,18 +2,20 @@ import { useState, useEffect, useRef } from "react"
 import AdminNav from "../../components/AdminNav"
 import axios from "axios"
 import router from "next/router"
+import { getStorageItem, setStorageItem } from '../../lib/storage.js'
 import jwt_decode from "jwt-decode"
 import PreviewWindow from "../../components/PreviewWindow"
-import PostWindow from '../../components/PostWindow'
+import { useStatus } from "../../hooks/use-stuff"
 
 export default function edit({data}) {
-  const bodyRef = useRef(null)
+  const store = getStorageItem("edit")
+  const { edit, updateEdit } = useStatus()
   const ref = useRef(null)
   const [image, setImage] = useState('')
-  const [slug, setSlug] = useState(data[0].slug)
-  const [title, setTitle] = useState(data[0].title)
-  const [body, setBody] = useState(data[0].body)
-  const [author, setAuthor] = useState(data[0].author)
+  const [slug, setSlug] = useState(store ? store.details.slug : data[0].slug)
+  const [title, setTitle] = useState(store ? store.details.title : data[0].title)
+  const [body, setBody] = useState(store ? store.details.body : data[0].body)
+  const [author, setAuthor] = useState(store ? store.details.author : data[0].author)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
@@ -26,21 +28,27 @@ export default function edit({data}) {
   }, [setToken])
 
   useEffect(() => {
-    getData()
-    async function getData() {
-      const response = await fetch(
-        `https://radiant-oasis-73401.herokuapp.com/posts/${slug}`
-      )
-      const data = await response.json()
-      console.log(data)
+    const shit = {
+      details: {
+        body: body,
+        slug: slug,
+        title: title,
+        author: author,
+        image: image,
+      },
     }
-  }, [])
-  useEffect(() => {
-    if (body)
-    bodyRef.current.textContent = body
-  }, [body])
+    updateEdit(shit)
+  }, [slug, body, title, author, image])
 
-
+  // useEffect(() => {
+  //   getData()
+  //   async function getData() {
+  //     const response = await fetch(
+  //       `https://radiant-oasis-73401.herokuapp.com/posts/${slug}`
+  //     )
+  //     const data = await response.json()
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -65,6 +73,17 @@ export default function edit({data}) {
     }
   }, [])
 
+  const clearStorage = () => {
+   setBody(data.body)
+   setBody(data.body)
+   setBody(data.body)
+   setBody(data.body)
+   setBody(data.body)
+   if (typeof window !== 'undefined') {
+    window.location.reload(false)
+   }
+  }
+
   const handleSubmit = () => {
     setLoading(true)
     setIsError(false)
@@ -76,7 +95,7 @@ export default function edit({data}) {
       image: image,
     }
     axios
-      .post("https://radiant-oasis-73401.herokuapp.com/posts", details, {
+      .put(`https://radiant-oasis-73401.herokuapp.com/posts/${data[0]._pid}`, details, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => {
@@ -107,14 +126,16 @@ export default function edit({data}) {
       })
   }
 if (typeof data !== 'undefined') {
+
   return (
     <>
       <AdminNav />
       <PreviewWindow markdown={body} />
-      <PostWindow/>
+
 
       <div id="frame">
         <h5 id="h">Edit Post</h5>
+        <button onClick={clearStorage}>reset</button>
         <div className="form-group">
           <input
             type="text"
@@ -165,10 +186,9 @@ if (typeof data !== 'undefined') {
             spellCheck="true"
             className="form-control"
             id="body"
-            ref={bodyRef}
             className="paragraph2"
             placeholder="Body.."
-            value={data[0].body}
+            value={body}
             onChange={e => setBody(e.target.value)}
           />
         </div>
@@ -240,11 +260,7 @@ if (typeof data !== 'undefined') {
 }}
 export async function getServerSideProps({params}) {
 console.log(params.slug)
-
-  // Fetch data from external API
   const res = await fetch(    `https://radiant-oasis-73401.herokuapp.com/posts/${params.slug}`)
   const data = await res.json()
-
-
   return { props: { data } }
 }

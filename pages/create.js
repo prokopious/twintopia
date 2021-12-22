@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import AdminNav from "../components/AdminNav"
 import axios from "axios"
-import { getStorageItem, setStorageItem } from '../lib/storage.js'
-
+import { getStorageItem } from '../lib/storage.js'
 import router from "next/router"
 import jwt_decode from "jwt-decode"
 import PreviewWindow from "../components/PreviewWindow"
@@ -12,21 +11,18 @@ import { useStatus } from "../hooks/use-stuff"
 export default function create() {
 
   const { forms, updateForms } = useStatus()
-
+  const store = getStorageItem("cart")
   const ref = useRef(null)
-  const [image, setImage] = useState(forms.details.image)
-  const [slug, setSlug] = useState(forms.details.slug)
-  const [title, setTitle] = useState(forms.details.title)
-  const [body, setBody] = useState(forms.details.body)
-  const [author, setAuthor] = useState(forms.details.author)
+  const [image, setImage] = useState(store ? store.details.image : forms.details.image)
+  const [slug, setSlug] = useState(store ? store.details.slug : forms.details.slug)
+  const [title, setTitle] = useState(store ? store.details.title : forms.details.title)
+  const [body, setBody] = useState(store ? store.details.body : forms.details.body)
+  const [author, setAuthor] = useState(store ? store.details.author : forms.details.author)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
   const [data, setData] = useState(null)
   
-if (typeof window !== 'undefined') {
-  console.log("storage shit" + JSON.stringify(getStorageItem('cart')))
-}
   useEffect(() => {
     if (typeof window !== "undefined") {
       let token = localStorage.getItem("token")
@@ -34,7 +30,6 @@ if (typeof window !== 'undefined') {
     }
   }, [setToken])
 
- 
   useEffect(() => {
     const shit = {
       details: {
@@ -115,7 +110,6 @@ if (typeof window !== 'undefined') {
 
   return (
     <>
-      {JSON.stringify(forms)}
       <AdminNav />
       <PreviewWindow markdown={body} />
       <PostWindow />
