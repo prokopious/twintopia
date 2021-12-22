@@ -14,39 +14,52 @@ export default function PostList() {
   if (posts != []) {
     return (
       <>
+      <h1 id="he">All Posts</h1>
         {posts.map((post, i) => {
-          let stamp = post.createdAt
-          console.log(stamp)
+          const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          const date = new Date(post.createdAt);
+          const month = months[date.getMonth()];
+          const year = date.getFullYear();
+          const day = date.getDate();
+          const d = `${month} ${day}th, ${year}`
           return (
             <>
               <div key={i} id="postList">
+            
                 <Link href={post.slug}>
                   <a>
-                    <h3>{post.title}</h3>
+                    <h2 id="tit">{post.title}</h2>
                   </a>
                 </Link>
-                <div>{post.createdAt}</div>
-                <div>{post.author}</div>
+                <div>{d}</div>
+             
               </div>
+        
+            </>
+          )
+        })}
               <style jsx>{`
                 a {
                   color: black;
                   text-decoration: none;
                 }
+                #tit {
+                  margin-bottom: 5px;
+                  color: #414141;
+          
+                }
+                #he {
+                  padding-bottom: 30px;
+                  color: #414141;
+    
+                }
                 #postList {
+
                 }
 
-                @media (max-width: 700px) {
-                  #postList{
-         
-
-                  }
-                  }
+           
                 }
               `}</style>
-            </>
-          )
-        })}
       </>
     )
   } else {

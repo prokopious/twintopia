@@ -2,10 +2,18 @@ import ReactMarkdown from "react-markdown"
 
 export default function post({ post }) {
   if (post != {}) {
+    const date = new Date(post[0].createdAt);
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    const day = date.getDate();
+    const d = `${month} ${day}th, ${year}`
     return (
       <>
-        <main>
-          <div id="box">
+        <div id="box">
+          <main>
+            <h1>{post[0].title}</h1>
+            <h4>{d}</h4>
             <ReactMarkdown
               components={{
                 img: ({ node, ...props }) => (
@@ -17,8 +25,16 @@ export default function post({ post }) {
             >
               {post[0].body}
             </ReactMarkdown>
-          </div>
-        </main>
+          </main>
+        </div>
+        <style jsx>{`
+          
+          #box {
+            margin-left: 20px;
+            margin-top: 5%;
+            width: 90%;
+          }
+          `}</style>
       </>
     )
   } else {
@@ -41,7 +57,6 @@ export async function getStaticProps({ params }) {
     `https://radiant-oasis-73401.herokuapp.com/posts/${params.slug}`
   )
   const post = await res.json()
-
 
   // Pass post data to the page via props
   return { props: { post } }

@@ -1,20 +1,22 @@
 import PostList from "../components/PostList"
 import Navbar from "../components/Navbar"
-import Layout from '../components/Layout'
-import useStatus from '../hooks/use-stuff'
-
+import Layout from "../components/Layout"
+import useStatus from "../hooks/use-stuff"
 
 export default function Home() {
-
   return (
     <>
       <Layout>
         <Navbar />
-        <div>
-          <h1>All posts</h1>
+        <div id="offset">
           <PostList />
         </div>
       </Layout>
+      <style jsx>{`
+        #offset {
+          margin-left: 10px;
+        }
+      `}</style>
     </>
   )
 }
