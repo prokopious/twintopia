@@ -90,14 +90,14 @@ export default function AdminNav() {
 
         #linkGrid {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr 7fr;
+          grid-template-columns: 70px 70px 70px 7fr;
           grid-gap: 0px;
         }
 
         @media (max-width: 700px) {
           #linkGrid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 70px 70px 70px 1fr;
             grid-gap: 0px;
           }
         }

@@ -3,36 +3,19 @@ import AdminNav from "../components/AdminNav"
 import axios from "axios"
 import Dropdown from "../components/Dropdown"
 import DropdownList from "../components/DropdownList"
-import { getStorageItem } from "../lib/storage.js"
 import router from "next/router"
 import jwt_decode from "jwt-decode"
-import PreviewWindow from "../components/PreviewWindow"
-import PostWindow from "../components/PostWindow"
-import { useStatus } from "../hooks/use-stuff"
 
 export default function create() {
-  const { forms, updateForms } = useStatus()
-  const store = getStorageItem("cart")
   const ref = useRef(null)
-  const [image, setImage] = useState(
-    store ? store.details.image : forms.details.image
-  )
-  const [slug, setSlug] = useState(
-    store ? store.details.slug : forms.details.slug
-  )
-  const [title, setTitle] = useState(
-    store ? store.details.title : forms.details.title
-  )
-  const [body, setBody] = useState(
-    store ? store.details.body : forms.details.body
-  )
-  const [author, setAuthor] = useState(
-    store ? store.details.author : forms.details.author
-  )
+  const [company, setCompany] = useState("")
+  const [name, setName] = useState("")
+  const [body, setBody] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
-  const [data, setData] = useState(null)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -40,19 +23,6 @@ export default function create() {
       setToken(token)
     }
   }, [setToken])
-
-  useEffect(() => {
-    const update = {
-      details: {
-        body: body,
-        slug: slug,
-        title: title,
-        author: author,
-        image: image,
-      },
-    }
-    updateForms(update)
-  }, [slug, body, title, author, image])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -81,28 +51,26 @@ export default function create() {
       window.location.reload(false)
     }
   }
-
   const handleSubmit = () => {
     setLoading(true)
     setIsError(false)
     const details = {
-      title: title,
-      body: body,
-      author: author,
-      slug: slug,
-      image: image,
+      name: name,
+      notes: body,
+      company: company,
+      phone: phone,
+      email: email,
     }
     axios
-      .post("https://radiant-oasis-73401.herokuapp.com/posts", details, {
+      .post("https://radiant-oasis-73401.herokuapp.com/recruiters", details, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => {
-        setData(res.data)
-        setTitle("")
+        setName("")
+        setEmail("")
         setBody("")
-        setAuthor("")
-        setSlug("")
-        setImage("")
+        setPhone("")
+        setCompany("")
         setLoading(false)
       })
       .then(refreshPage())
@@ -112,7 +80,6 @@ export default function create() {
           ref.current.textContent = "You are not logged in."
           router.push("./login")
         } else if (err.response.status == 500) {
-          console.log(err.response)
           ref.current.textContent = Object.keys(err.response.data.errors)
             .map(key => {
               return err.response.data.errors[key].message
@@ -127,54 +94,52 @@ export default function create() {
   return (
     <>
       <AdminNav />
-
-      <Dropdown markdown={body}/>
+      <Dropdown markdown={body} />
       <DropdownList />
-
       <div id="frame">
         <div id="h">Create A Post</div>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            title="title"
+            id="name"
             className="paragraph"
-            placeholder="Title.."
-            value={title}
-            onChange={e => setTitle(e.target.value)}
+            placeholder="Name.."
+            value={name}
+            onChange={e => setName(e.target.value)}
           />
         </div>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            id="author"
+            id="company"
             className="paragraph"
-            placeholder="Author.."
-            value={author}
-            onChange={e => setAuthor(e.target.value)}
+            placeholder="Company.."
+            value={company}
+            onChange={e => setCompany(e.target.value)}
           />
         </div>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            id="slug"
+            id="phone"
             className="paragraph"
-            placeholder="Slug.."
-            value={slug}
-            onChange={e => setSlug(e.target.value)}
+            placeholder="Phone.."
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
           />
         </div>
         <div className="form-group">
           <input
             type="text"
             className="form-control"
-            id="image"
+            id="email"
             className="paragraph"
-            placeholder="Image.."
-            value={image}
-            onChange={e => setImage(e.target.value)}
+            placeholder="Email.."
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group">

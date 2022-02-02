@@ -13,24 +13,29 @@ export default function PostList2() {
 
   if (posts != []) {
     return (
-      <>
+      <><div id="list"><h3>Select a post</h3>
         {posts.map((post, i) => {
           return (
             <div key={i} id="postList">
-              <div>
+              <p>
                 <Link href={`edit/${post.slug}`}>
                   <a>{post.title}</a>
                 </Link>
-              </div>
+              </p>
               <style jsx>{`
                 a {
                   color: black;
                   text-decoration: none;
                 }
+                #list {
+                  padding: 20px;
+                  margin-left: 20px;
+                }
               `}</style>
             </div>
           )
         })}
+        </div>
       </>
     )
   } else {

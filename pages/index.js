@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Layout>
-        <Navbar />
+ 
         <div id="offset">
           <PostList />
         </div>

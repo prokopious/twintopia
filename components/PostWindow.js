@@ -3,100 +3,75 @@ import PostList2 from "./PostList2"
 
 export default function PreviewWindow(props) {
   const dropdownRef = useRef(null)
+  const displayRef = useRef("inline")
   const [isActive, setIsActive] = useState(false)
-  const onClick = () => setIsActive(!isActive)
+  const onClick = () => {
+    setIsActive(!isActive)
+  }
 
   return (
     <>
-      <div className="menu-container">
-        <button onClick={onClick} className="menu-trigger">
-          <span>Edit</span>
-     
-        </button>
-        <div id="preview"
+      <button onClick={onClick} className="menu-trigger">
+        <span id="sp">Edit</span>
+      </button>
+      <div className="menu-container" ref={displayRef}>
+        <div
+          id="preview"
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"}`}
         >
-         <PostList2/>
+          <PostList2 />
         </div>
+        <style jsx>{`
+        .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+
+        `}</style>{" "}
       </div>
-      <style jsx>{`
-        .menu-container {
-          position: relative;
-          margin: 10px;
-    
-          z-index: 999;
-          width: 90vw;
-        }
-        .menu {
-          background: #ffffff;
-          border-radius: 8px;
-          position: absolute;
-          top: 35px;
-          right: 0;
-          padding: 10px;
-          width: 90%;
-          min-height: 100vw;
-          box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(-20px);
-          transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-        }
-
-        .menu.active {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
-        }
-
-        #window {
-            width: 100%
-        }
-
-        .menu ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .menu li {
-          border-bottom: 1px solid #dddddd;
-        }
-
-        .menu li a {
-          text-decoration: none;
-          color: #333333;
-          padding: 15px 20px;
-          display: block;
-        }
-        .menu-trigger {
-            border-radius: 3px;
-          background-color: rgb(255, 255, 255);
-          padding: 5px 10px;
-          border: transparent;
-          display: inline;
-          box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
-            5px 5px 12px rgba(49, 49, 49, 0.164);
-  vertical-align: middle;
-  
-}
-
-.menu-trigger:hover {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-}
-
-.menu-trigger span {
-  font-weight: 700;
-  vertical-align: middle;
-  font-size: 14px;
-  margin: 0 10px;
-}
-
-.menu-trigger img {
-  border-radius: 4px;
-}
-      `}</style>
     </>
   )
 }

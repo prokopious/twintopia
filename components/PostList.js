@@ -13,32 +13,45 @@ export default function PostList() {
 
   if (posts != []) {
     return (
-      <>
-      <h1 id="he">All Posts</h1>
+      <div id="cont">
+        <h1 id="he">All Posts</h1>
         {posts.map((post, i) => {
-          const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-          const date = new Date(post.createdAt);
-          const month = months[date.getMonth()];
-          const year = date.getFullYear();
-          const day = date.getDate();
+          const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ]
+          const date = new Date(post.createdAt)
+          const month = months[date.getMonth()]
+          const year = date.getFullYear()
+          const day = date.getDate()
           const d = `${month} ${day}th, ${year}`
           return (
             <>
               <div key={i} id="postList">
-            
                 <Link href={post.slug}>
                   <a>
                     <h2 id="tit">{post.title}</h2>
                   </a>
                 </Link>
                 <div>{d}</div>
-             
               </div>
-        
             </>
           )
         })}
-              <style jsx>{`
+        <style jsx>{`
+        #cont {
+	height: 100%;
+}
                 a {
                   color: black;
                   text-decoration: none;
@@ -60,7 +73,7 @@ export default function PostList() {
            
                 }
               `}</style>
-      </>
+      </div>
     )
   } else {
     return <>Loading...</>
