@@ -18,8 +18,7 @@ const defaultJob = {
     company: "",
     title: "",
     comapanyUrl: "",
-    jobU
-
+    jobUrl: "",
   },
 }
 const defaultRecruiter = {

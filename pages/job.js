@@ -60,6 +60,8 @@ export default function create() {
       title: title,
       notes: body,
       company: company,
+      companyUrl: companyUrl,
+      jobUrl: jobUrl,
     }
     axios
       .post("https://radiant-oasis-73401.herokuapp.com/jobs", details, {

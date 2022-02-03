@@ -16,8 +16,12 @@ export default function Home() {
               <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
                 <div className="name">{item.name}</div>
                 <div className="company">{item.company}</div>
-                <div className="phone">{item.phone}</div>
+           
+            
                 <div className="email">{item.email}</div>
+                <div className="phone">{item.phone}</div>
+                <div className="u"><a href={item.companyUrl}>{item.companyUrl}</a></div>
+                <div className="u"><a href={item.personalUrl}>{item.personalUrl}</a></div>
                 <p className="notes">{item.notes}</p>
                 <div className="edit">
                   <Link href={`/editrecruiter/${item._id}`}>
@@ -35,6 +39,10 @@ export default function Home() {
         }
         #oddBox {
           padding: 20px;
+          
+        }
+        .email {
+          margin-top: 5px;
         }
         .notes {
           padding-top: 10px;

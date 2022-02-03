@@ -17,6 +17,8 @@ export default function Home() {
               <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
                 <div className="title">{item.title}</div>
                 <div className="company">{item.company}</div>
+                <div className="company">{item.companyUrl}</div>
+                <div className="company">{item.jobUrl}</div>
                 <div className="date">{formatDate(item.createdAt)}</div>
                 <p className="notes">{item.notes}</p>
 
