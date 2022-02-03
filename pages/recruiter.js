@@ -12,6 +12,8 @@ export default function create() {
   const [name, setName] = useState("")
   const [body, setBody] = useState("")
   const [phone, setPhone] = useState("")
+  const [personalUrl, setPersonalUrl] = useState("")
+  const [companyUrl, setCompanyUrl] = useState("")
   const [email, setEmail] = useState("")
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -57,6 +59,8 @@ export default function create() {
     const details = {
       name: name,
       notes: body,
+      personalUrl: personalUrl,
+      companyUrl: companyUrl,
       company: company,
       phone: phone,
       email: email,
@@ -70,6 +74,8 @@ export default function create() {
         setEmail("")
         setBody("")
         setPhone("")
+        setCompanyUrl("")
+        setPersonalUrl("")
         setCompany("")
         setLoading(false)
       })
@@ -139,6 +145,28 @@ export default function create() {
             placeholder="Email.."
             value={email}
             onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            id="companyUrl"
+            className="paragraph"
+            placeholder="Company URL.."
+            value={companyUrl}
+            onChange={e => setCompanyUrl(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            id="personalUrl"
+            className="paragraph"
+            placeholder="Personal URL.."
+            value={personalUrl}
+            onChange={e => setPersonalUrl(e.target.value)}
           />
         </div>
         <div className="form-group">

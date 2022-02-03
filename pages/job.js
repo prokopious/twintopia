@@ -12,6 +12,8 @@ export default function create() {
   const [company, setCompany] = useState("")
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
+  const [jobUrl, setJobUrl] = useState("")
+  const [companyUrl, setCompanyUrl] = useState("")
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
@@ -67,6 +69,8 @@ export default function create() {
         setTitle("")
         setBody("")
         setCompany("")
+        setJobUrl("")
+        setCompanyUrl("")
         setLoading(false)
       })
       .then(refreshPage())
@@ -114,6 +118,28 @@ export default function create() {
             placeholder="Company.."
             value={company}
             onChange={e => setCompany(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            id="jobUrl"
+            className="paragraph"
+            placeholder="Job URL.."
+            value={jobUrl}
+            onChange={e => setJobUrl(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control"
+            id="companyUrl"
+            className="paragraph"
+            placeholder="Company URL.."
+            value={companyUrl}
+            onChange={e => setCompanyUrl(e.target.value)}
           />
         </div>
         <div className="form-group">

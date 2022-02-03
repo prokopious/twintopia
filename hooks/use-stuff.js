@@ -17,6 +17,9 @@ const defaultJob = {
     body: "",
     company: "",
     title: "",
+    comapanyUrl: "",
+    jobU
+
   },
 }
 const defaultRecruiter = {
@@ -24,6 +27,8 @@ const defaultRecruiter = {
     body: "",
     company: "",
     name: "",
+    personalUrl: "",
+    companyUrl: "",
     phone: "",
     email: "",
   },

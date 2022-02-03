@@ -15,7 +15,7 @@ const formatDate = (d: string): string => {
   ]
 
   const date = new Date(d)
-  return `${months[date.getMonth()]} ${date.getDate()}th, ${date.getFullYear()}`
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
 }
 
 export default formatDate
