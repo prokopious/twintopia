@@ -1,4 +1,5 @@
 import useFetch from "../hooks/use-fetch"
+import AdminNav from '../components/AdminNav'
 import Link from "next/link"
 export default function Home() {
   const { data, loading, error } = useFetch(
@@ -6,7 +7,7 @@ export default function Home() {
   )
 
   return (
-    <>
+    <><AdminNav />
       {loading && <>loading...</>}
       {error && <>there was an error...</>}
       {data && (
