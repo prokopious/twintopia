@@ -1,5 +1,6 @@
 import useFetch from "../hooks/use-fetch"
 import Link from "next/link"
+import formatDate from "../utils/format-date"
 export default function Home() {
   const { data, loading, error } = useFetch(
     "https://radiant-oasis-73401.herokuapp.com/jobs"
@@ -16,6 +17,7 @@ export default function Home() {
               <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
                 <div className="title">{item.title}</div>
                 <div className="company">{item.company}</div>
+                <div className="date">{formatDate(item.createdAt)}</div>
                 <p className="notes">{item.notes}</p>
 
                 <div className="edit">
