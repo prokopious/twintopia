@@ -12,7 +12,7 @@ export default function Home() {
       {loading && <>loading...</>}
       {error && <>there was an error...</>}
       {data && (
-        <div>
+        <div id="grid">
           {data.map(item => (
             <>
               <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
@@ -42,6 +42,9 @@ export default function Home() {
         #evenBox {
           padding: 20px;
         }
+     #grid {
+       max-width: 960px;
+     }
         #oddBox {
           padding: 20px;
         }

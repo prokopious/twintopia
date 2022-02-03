@@ -1,6 +1,6 @@
 import useFetch from "../hooks/use-fetch"
 import Link from "next/link"
-import AdminNav from '../components/AdminNav'
+import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
 export default function Home() {
   const { data, loading, error } = useFetch(
@@ -13,24 +13,22 @@ export default function Home() {
       {loading && <>loading...</>}
       {error && <>there was an error...</>}
       {data && (
-        <div>
+        <div id="grid">
           {data.map(item => (
-            <>
-              <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
-                <div className="title">{item.title}</div>
-                <div className="company">{item.company}</div>
-                <div className="company">{item.companyUrl}</div>
-                <div className="company">{item.jobUrl}</div>
-                <div className="date">{formatDate(item.createdAt)}</div>
-                <p className="notes">{item.notes}</p>
+            <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+              <div className="title">{item.title}</div>
+              <div className="company">{item.company}</div>
+              <div className="company">{item.companyUrl}</div>
+              <div className="company">{item.jobUrl}</div>
+              <div className="date">{formatDate(item.createdAt)}</div>
+              <p className="notes">{item.notes}</p>
 
-                <div className="edit">
-                  <Link href={`/editjob/${item._id}`}>
-                    <a>edit job</a>
-                  </Link>
-                </div>
+              <div className="edit">
+                <Link href={`/editjob/${item._id}`}>
+                  <a>edit job</a>
+                </Link>
               </div>
-            </>
+            </div>
           ))}
         </div>
       )}
@@ -41,6 +39,9 @@ export default function Home() {
         #oddBox {
           padding: 20px;
         }
+        #grid {
+       max-width: 960px;
+     }
         .notes {
           padding-top: 10px;
           padding-bottom: 10px;
