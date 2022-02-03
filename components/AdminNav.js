@@ -65,6 +65,16 @@ export default function AdminNav() {
                 <a>Rcrtr</a>
               </Link>
             </div>
+            <div id="z">
+              <Link href="/recruiters">
+                <a>Recs</a>
+              </Link>
+            </div>
+            <div id="z">
+              <Link href="/jobs">
+                <a>Jbs</a>
+              </Link>
+            </div>
       
 
             <div ref={ref} id="l">
@@ -101,7 +111,7 @@ export default function AdminNav() {
 
         #linkGrid {
           display: grid;
-          grid-template-columns: 46px 45px 38px 49px 48px;
+          grid-template-columns: 46px 45px 38px 49px 48px 37px 42px;
           grid-gap: 0px;
         }
 

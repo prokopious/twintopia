@@ -79,7 +79,6 @@ export default function create() {
         setCompany("")
         setLoading(false)
       })
-      .then(refreshPage())
       .catch(err => {
         setLoading(false)
         if (err.response.status == 401) {

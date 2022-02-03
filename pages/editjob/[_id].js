@@ -12,8 +12,13 @@ export default function edit({ data }) {
   const store = getStorageItem("jobs")
   const { editJob, updateJob } = useStatus()
   const ref = useRef(null)
-
-  const [title, setTitle] = useState(store ? store.details.title : data.title)
+  const [jobUrl, setJobUrl] = useState(
+    store ? store.details.jobUrl : data.jobUrl
+  )
+  const [title, setTitle] = useState(
+    store ? store.details.title : data.title
+  )
+  const [companyUrl, setCompanyUrl] = useState(store ? store.details.companyUrl : data.companyUrl)
   const [company, setCompany] = useState(
     store ? store.details.company : data.company
   )
@@ -29,18 +34,18 @@ export default function edit({ data }) {
     }
   }, [setToken])
 
-
-
   useEffect(() => {
     const update = {
       details: {
         notes: body,
         title: title,
+        jobUrl: jobUrl,
+        companyUrl: companyUrl,
         company: company,
       },
     }
     updateJob(update)
-  }, [body, title, company])
+  }, [body, title, company, jobUrl, companyUrl])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -67,6 +72,8 @@ export default function edit({ data }) {
 
   const clearStorage = () => {
     setBody(data.notes)
+    setJobUrl(data.jobUrl)
+    setCompanyUrl(data.companyUrl)
     setTitle(data.title)
     setCompany(data.company)
     if (typeof window !== "undefined") {
@@ -89,6 +96,8 @@ export default function edit({ data }) {
         console.log(res)
         setTitle("")
         setBody("")
+        setCompanyUrl("")
+        setJobUrl("")
         setCompany("")
         setLoading(false)
       })
@@ -118,6 +127,8 @@ export default function edit({ data }) {
     const details = {
       title: title,
       notes: body,
+      companyUrl: companyUrl,
+      jobUrl: jobUrl,
       company: company,
     }
     axios
@@ -133,6 +144,8 @@ export default function edit({ data }) {
         setTitle("")
         setBody("")
         setCompany("")
+        setCompanyUrl("")
+        setJobUrl("")
         setLoading(false)
       })
       .then(refreshPage())
@@ -181,6 +194,28 @@ export default function edit({ data }) {
               placeholder="Company.."
               value={company}
               onChange={e => setCompany(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="jobUrl"
+              className="paragraph"
+              placeholder="Job URL.."
+              value={jobUrl}
+              onChange={e => setJobUrl(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="companyUrl"
+              className="paragraph"
+              placeholder="Company URL.."
+              value={companyUrl}
+              onChange={e => setCompanyUrl(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -260,7 +295,7 @@ export default function edit({ data }) {
             background-color: rgb(255, 255, 255);
             padding: 5px 10px;
             border: transparent;
-            margin-top: 20px;
+            margin-top: 70px;
             box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
               5px 5px 12px rgba(49, 49, 49, 0.164);
             background-color: red;

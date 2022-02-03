@@ -1,5 +1,6 @@
 import useFetch from "../hooks/use-fetch"
 import Link from "next/link"
+import AdminNav from '../components/AdminNav'
 import formatDate from "../utils/format-date"
 export default function Home() {
   const { data, loading, error } = useFetch(
@@ -8,6 +9,7 @@ export default function Home() {
 
   return (
     <>
+      <AdminNav />
       {loading && <>loading...</>}
       {error && <>there was an error...</>}
       {data && (

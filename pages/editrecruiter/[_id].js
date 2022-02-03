@@ -18,7 +18,9 @@ export default function edit({ data }) {
     store ? store.details.company : data.company
   )
   const [body, setBody] = useState(store ? store.details.notes : data.notes)
+  const [personalUrl, setPersonalUrl] = useState(store ? store.details.personalUrl : data.personalUrl)
   const [phone, setPhone] = useState(store ? store.details.phone : data.phone)
+    const [companyUrl, setCompanyUrl] = useState(store ? store.details.companyUrl : data.companyUrl)
   const [email, setEmail] = useState(store ? store.details.email : data.email)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -37,12 +39,14 @@ export default function edit({ data }) {
         notes: body,
         name: name,
         company: company,
+        companyUrl: companyUrl,
+        personalUrl: personalUrl,
         phone: phone,
         email: email,
       },
     }
     updateRecruiter(update)
-  }, [body, name, email, phone, company])
+  }, [body, name, email, phone, company, companyUrl, personalUrl])
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -70,6 +74,8 @@ export default function edit({ data }) {
   const clearStorage = () => {
     setBody(data.notes)
     setName(data.name)
+    setPersonalUrl(data.personalUrl)
+    setCompanyUrl(data.companyUrl)
     setCompany(data.company)
     setPhone(data.phone)
     setEmail(data.email)
@@ -95,6 +101,8 @@ export default function edit({ data }) {
         setEmail("")
         setPhone("")
         setBody("")
+        setCompanyUrl('')
+        setPersonalUrl("")
         setCompany("")
         setLoading(false)
       })
@@ -126,6 +134,8 @@ export default function edit({ data }) {
       notes: body,
       company: company,
       email: email,
+      companyUrl: companyUrl,
+      personalUrl: personalUrl,
       phone: phone,
     }
     axios
@@ -142,6 +152,8 @@ export default function edit({ data }) {
         setBody("")
         setCompany("")
         setPhone("")
+        setCompanyUrl("")
+        setPersonalUrl('')
         setEmail("")
         setLoading(false)
       })
@@ -209,11 +221,33 @@ export default function edit({ data }) {
             <input
               type="text"
               className="form-control"
+              id="personalUrl"
+              className="paragraph"
+              placeholder="PersonalUrl.."
+              value={personalUrl}
+              onChange={e => setPersonalUrl(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
               id="company"
               className="paragraph"
               placeholder="Company.."
               value={company}
               onChange={e => setCompany(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              id="companyUrl"
+              className="paragraph"
+              placeholder="Company URL.."
+              value={companyUrl}
+              onChange={e => setCompanyUrl(e.target.value)}
             />
           </div>
           <div className="form-group">
