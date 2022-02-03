@@ -52,7 +52,17 @@ export default function AdminNav() {
             </div>
             <div id="z">
               <Link href="/create">
-                <a>Create</a>
+                <a>Post</a>
+              </Link>
+            </div>
+            <div id="z">
+              <Link href="/job">
+                <a>Job</a>
+              </Link>
+            </div>
+            <div id="z">
+              <Link href="/recruiter">
+                <a>Rcrtr</a>
               </Link>
             </div>
       
@@ -75,6 +85,7 @@ export default function AdminNav() {
 
         a {
           text-decoration: none;
+          background-color: #f3f3f3;
           color: black;
         }
         #l {
@@ -90,14 +101,14 @@ export default function AdminNav() {
 
         #linkGrid {
           display: grid;
-          grid-template-columns: 70px 70px 70px 7fr;
+          grid-template-columns: 46px 45px 38px 49px 48px;
           grid-gap: 0px;
         }
 
         @media (max-width: 700px) {
           #linkGrid {
             display: grid;
-            grid-template-columns: 70px 70px 70px 1fr;
+            grid-template-columns: 46px 45px 38px 49px 48px;
             grid-gap: 0px;
           }
         }

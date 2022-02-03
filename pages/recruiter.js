@@ -5,7 +5,7 @@ import Dropdown from "../components/Dropdown"
 import DropdownList from "../components/DropdownList"
 import router from "next/router"
 import jwt_decode from "jwt-decode"
-
+import Link from 'next/link'
 export default function create() {
   const ref = useRef(null)
   const [company, setCompany] = useState("")
@@ -94,10 +94,9 @@ export default function create() {
   return (
     <>
       <AdminNav />
-      <Dropdown markdown={body} />
-      <DropdownList />
+  
       <div id="frame">
-        <div id="h">Create A Post</div>
+        <div id="h">Create A Recruiter</div>
         <div className="form-group">
           <input
             type="text"
@@ -165,6 +164,9 @@ export default function create() {
           {loading ? "Loading..." : "Submit"}
         </button>
         <div id="string" ref={ref}></div>
+        <div id="li"><Link href={`/recruiters`}>
+      <a>see all recruiters</a>
+    </Link></div>
       </div>
 
       <style jsx>{`
@@ -172,6 +174,7 @@ export default function create() {
           padding: 15px;
           align-items: center;
         }
+        
         #h {
           margin-top: 4px;
           padding-top: 0px;

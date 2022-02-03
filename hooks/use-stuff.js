@@ -12,11 +12,29 @@ const defaultForms = {
     image: "",
   },
 }
+const defaultJob = {
+  details: {
+    body: "",
+    company: "",
+    title: "",
+  },
+}
+const defaultRecruiter = {
+  details: {
+    body: "",
+    company: "",
+    name: "",
+    phone: "",
+    email: "",
+  },
+}
 
 export function useLogin() {
   const [status, setStatus] = useState(false)
   const [forms, setForms] = useState(defaultForms)
   const [edit, setEdit] = useState(defaultForms)
+  const [editJob, setEditJob] = useState(defaultJob)
+  const [editRecruiter, setEditRecruiter] = useState(defaultRecruiter)
 
   useEffect(() => {
     const data = getStorageItem("cart")
@@ -27,14 +45,23 @@ export function useLogin() {
     if (d) {
       setEdit(d)
     }
+    const j = getStorageItem("jobs")
+    if (j) {
+      setEdit(j)
+    }
+    const r = getStorageItem("recruiters")
+    if (r) {
+      setEdit(r)
+    }
   }, [])
 
   useEffect(() => {
-      if (forms !== defaultForms)
-      setStorageItem("cart", forms)
-      if (edit !== defaultForms)
-      setStorageItem("edit", edit)
-  }, [forms, edit])
+    if (forms !== defaultForms) setStorageItem("cart", forms)
+    if (edit !== defaultForms) setStorageItem("edit", edit)
+    if (editJob !== defaultJob) setStorageItem("jobs", editJob)
+    if (editRecruiter !== defaultRecruiter)
+      setStorageItem("recruiters", editRecruiter)
+  }, [forms, edit, editJob, editRecruiter])
 
   function updateForms(details) {
     setForms(details)
@@ -43,8 +70,18 @@ export function useLogin() {
   }
   function updateEdit(details) {
     setEdit(details)
-    let forms = details
+    let edit = details
     return edit
+  }
+  function updateRecruiter(details) {
+    setEditRecruiter(details)
+    let editRecruiter = details
+    return editRecruiter
+  }
+  function updateJob(details) {
+    setEditJob(details)
+    let editJob = details
+    return editJob
   }
   function setLogin() {
     setStatus(true)
@@ -58,7 +95,11 @@ export function useLogin() {
     forms,
     status,
     edit,
+    editJob,
+    editRecruiter,
     updateEdit,
+    updateJob,
+    updateRecruiter,
     setLogout,
     setLogin,
     updateForms,

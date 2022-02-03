@@ -3,7 +3,7 @@ import AdminNav from "../components/AdminNav"
 import axios from "axios"
 import Dropdown from "../components/Dropdown"
 import DropdownList from "../components/DropdownList"
-import { getStorageItem } from "../lib/storage.js"
+import Link from 'next/link'
 import router from "next/router"
 import jwt_decode from "jwt-decode"
 
@@ -22,8 +22,6 @@ export default function create() {
       setToken(token)
     }
   }, [setToken])
-
-
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -95,7 +93,7 @@ export default function create() {
       <Dropdown markdown={body} />
       <DropdownList />
       <div id="frame">
-        <div id="h">Create A Post</div>
+        <div id="h">Create A Job</div>
         <div className="form-group">
           <input
             type="text"
@@ -141,6 +139,9 @@ export default function create() {
           {loading ? "Loading..." : "Submit"}
         </button>
         <div id="string" ref={ref}></div>
+        <div id="li"><Link href={`/jobs`}>
+      <a>see all jobs</a>
+    </Link></div>
       </div>
 
       <style jsx>{`
