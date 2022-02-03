@@ -92,7 +92,7 @@ export default function edit({ data }) {
         setCompany("")
         setLoading(false)
       })
-      .then(router.push("/create"))
+      .then(router.push("/jobs"))
 
       .catch(err => {
         console.log(err)

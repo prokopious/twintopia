@@ -86,7 +86,7 @@ export default function edit({ data }) {
 
   const del = () => {
     axios
-      .delete(`https://radiant-oasis-73401.herokuapp.com/jobs/${data._id}`, {
+      .delete(`https://radiant-oasis-73401.herokuapp.com/recruiters/${data._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(res => {
@@ -98,7 +98,7 @@ export default function edit({ data }) {
         setCompany("")
         setLoading(false)
       })
-      .then(router.push("/create"))
+      .then(router.push("/recruiters"))
 
       .catch(err => {
         console.log(err)
