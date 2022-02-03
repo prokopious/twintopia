@@ -96,8 +96,6 @@ export default function create() {
   return (
     <>
       <AdminNav />
-      <Dropdown markdown={body} />
-      <DropdownList />
       <div id="frame">
         <div id="h">Create A Job</div>
         <div className="form-group">
