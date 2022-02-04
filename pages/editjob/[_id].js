@@ -46,19 +46,19 @@ export default function edit({ data }) {
       let token = localStorage.getItem("token")
       let decoded
       if (!token) {
-        router.push("./login")
+        router.push(`/login`)
       } else if (token) {
         try {
           decoded = jwt_decode(token)
         } catch (error) {
-          router.push("./login")
+          router.push(`/login`)
         }
         if (Date.now() < decoded.exp * 1000) {
           return
         } else if (Date.now() >= decoded.exp * 1000) {
-          router.push("./login")
+          router.push(`/login`)
         } else {
-          router.push("./login")
+          router.push(`/login`)
         }
       }
     }
@@ -95,14 +95,14 @@ export default function edit({ data }) {
         setCompany("")
         setLoading(false)
       })
-      .then(router.push("/jobs"))
+      .then(router.push(`/login`))
 
       .catch(err => {
         console.log(err)
         setLoading(false)
         if (err.response.status == 401) {
           ref.current.textContent = "You are not logged in."
-          router.push("./login")
+          router.push(`/login`)
         } else if (err.response.status == 500) {
           console.log(err.response)
           ref.current.textContent = Object.keys(err.response.data.errors)
@@ -115,6 +115,7 @@ export default function edit({ data }) {
         }
       })
   }
+  {`/login`}
   const handleSubmit = () => {
     setLoading(true)
     setIsError(false)

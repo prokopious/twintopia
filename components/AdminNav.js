@@ -47,14 +47,14 @@ export default function AdminNav() {
           <div id="linkGrid">
             <div>
               <Link href="/">
-                <a>Blog</a>
+                <a>Home</a>
               </Link>
             </div>
-            <div id="z">
+            {/* <div id="z">
               <Link href="/create">
                 <a>Post</a>
               </Link>
-            </div>
+            </div> */}
             <div id="z">
               <Link href="/job">
                 <a>Job</a>
@@ -111,7 +111,7 @@ export default function AdminNav() {
 
         #linkGrid {
           display: grid;
-          grid-template-columns: 46px 45px 38px 49px 48px 37px 42px;
+          grid-template-columns: 57px 38px 49px 48px 37px 42px;
           grid-gap: 0px;
         }
 

@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <>
     <AdminNav />
-      <Layout>
+      {/* <Layout>
         <div id="offset">
           <PostList />
         </div>
-      </Layout>
+      </Layout> */}
       <style jsx>{`
         #offset {
           margin-left: 10px;
