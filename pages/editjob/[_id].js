@@ -12,17 +12,11 @@ export default function edit({ data }) {
   const store = getStorageItem("jobs")
   const { editJob, updateJob } = useStatus()
   const ref = useRef(null)
-  const [jobUrl, setJobUrl] = useState(
-    store ? store.details.jobUrl : data.jobUrl
-  )
-  const [title, setTitle] = useState(
-    store ? store.details.title : data.title
-  )
-  const [companyUrl, setCompanyUrl] = useState(store ? store.details.companyUrl : data.companyUrl)
-  const [company, setCompany] = useState(
-    store ? store.details.company : data.company
-  )
-  const [body, setBody] = useState(store ? store.details.notes : data.notes)
+  const [jobUrl, setJobUrl] = useState(data.jobUrl)
+  const [title, setTitle] = useState(data.title)
+  const [companyUrl, setCompanyUrl] = useState(data.companyUrl)
+  const [company, setCompany] = useState(data.company)
+  const [body, setBody] = useState(data.notes)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
@@ -173,7 +167,6 @@ export default function edit({ data }) {
         <AdminNav />
         <div id="frame">
           <h5 id="h">Edit Job</h5>
-          <button onClick={clearStorage}>reset</button>
           <div className="form-group">
             <input
               type="text"

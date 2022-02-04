@@ -16,12 +16,18 @@ export default function Home() {
         <div id="grid">
           {data.map(item => (
             <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+                <div className="date">{formatDate(item.createdAt)}</div>
               <div className="title">{item.title}</div>
               <div className="company">{item.company}</div>
-              <div className="company">{item.companyUrl}</div>
-              <div className="company">{item.jobUrl}</div>
-              <div className="date">{formatDate(item.createdAt)}</div>
               <p className="notes">{item.notes}</p>
+              <div className="u">
+                  <a href={item.companyUrl}>{item.companyUrl}</a>
+                </div>
+                <div className="u">
+                  <a href={item.jobUrl}>{item.jobUrl}</a>
+                </div>
+            
+        
 
               <div className="edit">
                 <Link href={`/editjob/${item._id}`}>
@@ -33,15 +39,19 @@ export default function Home() {
         </div>
       )}
       <style jsx>{`
-        #evenBox {
+      #evenBox {
           padding: 20px;
         }
+     #grid {
+       max-width: 960px;
+     }
         #oddBox {
           padding: 20px;
         }
-        #grid {
-       max-width: 960px;
-     }
+        .email {
+          margin-top: 5px;
+        }
+        
         .notes {
           padding-top: 10px;
           padding-bottom: 10px;

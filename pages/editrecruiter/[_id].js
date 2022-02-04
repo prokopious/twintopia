@@ -13,15 +13,15 @@ export default function edit({ data }) {
   const { editRecruiter, updateRecruiter } = useStatus()
   const ref = useRef(null)
 
-  const [name, setName] = useState(store ? store.details.name : data.name)
+  const [name, setName] = useState(data.name)
   const [company, setCompany] = useState(
-    store ? store.details.company : data.company
+    data.company
   )
-  const [body, setBody] = useState(store ? store.details.notes : data.notes)
-  const [personalUrl, setPersonalUrl] = useState(store ? store.details.personalUrl : data.personalUrl)
-  const [phone, setPhone] = useState(store ? store.details.phone : data.phone)
-    const [companyUrl, setCompanyUrl] = useState(store ? store.details.companyUrl : data.companyUrl)
-  const [email, setEmail] = useState(store ? store.details.email : data.email)
+  const [body, setBody] = useState(data.notes)
+  const [personalUrl, setPersonalUrl] = useState(data.personalUrl)
+  const [phone, setPhone] = useState(data.phone)
+    const [companyUrl, setCompanyUrl] = useState(data.companyUrl)
+  const [email, setEmail] = useState(data.email)
   const [token, setToken] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState([])
@@ -183,7 +183,6 @@ export default function edit({ data }) {
     
         <div id="frame">
           <h5 id="h">Edit Recruiter</h5>
-          <button onClick={clearStorage}>reset</button>
           <div className="form-group">
             <input
               type="text"
