@@ -4,7 +4,11 @@ import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
 
 export default function Home({ data }) {
-  const [filtered, setFiltered] = useState(data)
+  const [filtered, setFiltered] = useState(
+    data.sort((a, b) => {
+      return a.createdAt > b.createdAt ? -1 : 1
+    })
+  )
   const [toggle, setToggle] = useState(true)
 
   const filter = e => {
@@ -18,12 +22,11 @@ export default function Home({ data }) {
   const sortArray = () => {
     setFiltered(
       [...filtered].sort((a, b) => {
-        return eval(`b.createdAt ${toggle ? ">" : "<"} a.createdAt ? -1 : 1`)
+        return b.createdAt + `${toggle ? ">" : "<"}` + a.createdAt ? -1 : 1
       })
     )
     setToggle(!toggle)
   }
-
   return (
     <>
       <AdminNav />
