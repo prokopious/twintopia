@@ -1,8 +1,8 @@
 import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
-import searchFilter from "../utils/search-filter"
 import { useState } from "react"
 import Link from "next/link"
+
 export default function Home({ data }) {
   const [filtered, setFiltered] = useState(data)
   const [toggle, setToggle] = useState(true)
@@ -18,7 +18,9 @@ export default function Home({ data }) {
   const sortArray = () => {
     setFiltered(
       [...filtered].sort((a, b) => {
-        return eval(`a.createdAt ${toggle ? ">" : "<"} b.createdAt ? -1 : 1`)
+        return eval(
+          `b.createdAt ${toggle ? ">" : "<"} a.createdAt ? -1 : 1`
+        )
       })
     )
     setToggle(!toggle)
@@ -32,7 +34,7 @@ export default function Home({ data }) {
           <h3 className="heading">All recruiters</h3>
           <div id="in">
             <button id="b" onClick={sortArray}>
-              {toggle ? "newest" : "oldest"}
+              {toggle ? "oldest" : "newest"}
             </button>
             <input
               type="text"
@@ -41,7 +43,7 @@ export default function Home({ data }) {
             />
           </div>
           {filtered.map(item => (
-            <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+            <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
               <div className="date">{formatDate(item.createdAt)}</div>
               <div className="name">{item.name}</div>
               <div className="company">{item.company}</div>
@@ -70,9 +72,6 @@ export default function Home({ data }) {
         }
         #evenBox {
           padding: 20px;
-        }
-        #grid {
-          max-width: 960px;
         }
         #oddBox {
           padding: 20px;

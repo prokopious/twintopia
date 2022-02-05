@@ -1,8 +1,8 @@
-import useFetch from "../hooks/use-fetch"
 import { useState } from "react"
 import Link from "next/link"
 import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
+
 export default function Home({ data }) {
   const [filtered, setFiltered] = useState(data)
   const [toggle, setToggle] = useState(true)
@@ -18,7 +18,7 @@ export default function Home({ data }) {
   const sortArray = () => {
     setFiltered(
       [...filtered].sort((a, b) => {
-        return eval(`a.createdAt ${toggle ? ">" : "<"} b.createdAt ? -1 : 1`)
+        return eval(`b.createdAt ${toggle ? ">" : "<"} a.createdAt ? -1 : 1`)
       })
     )
     setToggle(!toggle)
@@ -32,7 +32,7 @@ export default function Home({ data }) {
           <h3 className="heading">All jobs</h3>
           <div id="in">
             <button id="b" onClick={sortArray}>
-              {toggle ? "newest" : "oldest"}
+              {toggle ? "oldest" : "newest"}
             </button>
             <input
               type="text"
@@ -71,9 +71,6 @@ export default function Home({ data }) {
         }
         #h44 {
           padding-left 20px;
-        }
-        #grid {
-          max-width: 960px;
         }
         #oddBox {
           padding: 20px;
