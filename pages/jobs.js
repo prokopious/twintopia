@@ -5,7 +5,7 @@ import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
 export default function Home({ data }) {
   const [filtered, setFiltered] = useState(data)
-  const [sorted, setSorted] = useState(filtered)
+  const [toggle, setToggle] = useState(true)
 
   const filter = e => {
     setFiltered(
@@ -14,16 +14,15 @@ export default function Home({ data }) {
       })
     )
   }
+
   const sortArray = () => {
-    let type = 'company'
-    const types = {
-      company: '_id'
-    };
-    const sortProperty = types[type];
-    const s = filtered.sort((a, b) => b[sortProperty] - a[sortProperty]);
-    console.log(s);
-    setSorted(s);
-  };
+    setFiltered(
+      [...filtered].sort((a, b) => {
+        return eval(`a.createdAt ${toggle ? ">" : "<"} b.createdAt ? -1 : 1`)
+      })
+    )
+    setToggle(!toggle)
+  }
 
   return (
     <>
@@ -32,13 +31,16 @@ export default function Home({ data }) {
         <div id="grid">
           <h3 className="heading">All jobs</h3>
           <div id="in">
+            <button id="b" onClick={sortArray}>
+              {toggle ? "newest" : "oldest"}
+            </button>
             <input
               type="text"
               placeholder="filter by keyword.."
               onChange={e => filter(e)}
             />
           </div>
-          {sorted.map(item => (
+          {filtered.map(item => (
             <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
               <div className="date">{formatDate(item.createdAt)}</div>
               <div className="title">{item.title}</div>
@@ -50,7 +52,6 @@ export default function Home({ data }) {
               <div className="u">
                 <a href={item.jobUrl}>{item.jobUrl}</a>
               </div>
-
               <div className="edit">
                 <Link href={`/editjob/${item._id}`}>
                   <a>edit job</a>
@@ -63,6 +64,10 @@ export default function Home({ data }) {
       <style jsx>{`
         #evenBox {
           padding: 20px;
+        }
+        #b {
+          margin-right: 5px;
+          width: 70px;
         }
         #h44 {
           padding-left 20px;
@@ -80,7 +85,6 @@ export default function Home({ data }) {
           padding-left: 20px;
           padding-top: 20px;
         }
-
         .notes {
           padding-top: 10px;
           padding-bottom: 10px;
