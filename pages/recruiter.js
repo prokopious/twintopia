@@ -5,7 +5,7 @@ import Dropdown from "../components/Dropdown"
 import DropdownList from "../components/DropdownList"
 import router from "next/router"
 import jwt_decode from "jwt-decode"
-import Link from 'next/link'
+import Link from "next/link"
 export default function create() {
   const ref = useRef(null)
   const [company, setCompany] = useState("")
@@ -99,10 +99,9 @@ export default function create() {
   return (
     <>
       <AdminNav />
-  
       <div id="frame">
-        <div id="h">Create A Recruiter</div>
-        <div className="form-group">
+        <div className="heading">Create a recruiter</div>
+        <div>
           <input
             type="text"
             className="form-control"
@@ -191,31 +190,30 @@ export default function create() {
           {loading ? "Loading..." : "Submit"}
         </button>
         <div id="string" ref={ref}></div>
-        <div id="li"><Link href={`/recruiters`}>
-      <a>see all recruiters</a>
-    </Link></div>
+        <div id="li">
+          <Link href={`/recruiters`}>
+            <a>see all recruiters</a>
+          </Link>
+        </div>
       </div>
 
       <style jsx>{`
         #frame {
-          padding: 15px;
-          align-items: center;
+          padding-left: 20px;
         }
-        
         #h {
-          margin-top: 4px;
           padding-top: 0px;
-          margin-bottom: 10px;
+          margin-bottom: 30px;
           color: #3a3a3a;
-          font-size: 18x;
+          font-size: 20px;
           font-weight: 500;
         }
         .paragraph {
           width: 700px;
           margin-bottom: 5px;
           height: 35px;
-          border-radius: 3px;
-          border: transparent;
+          border-radius: 0px;
+          border: 1px solid #eeeeee;
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);
           padding-left: 5px;
@@ -227,7 +225,7 @@ export default function create() {
         #buttt {
           background-color: rgb(255, 255, 255);
           padding: 5px 10px;
-          border: transparent;
+          border: 1px solid #eeeeee;
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);
           width: 70px;
@@ -237,9 +235,9 @@ export default function create() {
           width: 700px;
           margin-top: 2px;
           height: 200px;
-          border-radius: 3px;
           color: #3a3a3a;
-          border: transparent;
+          border-radius: 0px;
+          border: 1px solid #eeeeee;
           padding: 5px;
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);

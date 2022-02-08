@@ -3,7 +3,7 @@ import AdminNav from "../components/AdminNav"
 import axios from "axios"
 import Dropdown from "../components/Dropdown"
 import DropdownList from "../components/DropdownList"
-import Link from 'next/link'
+import Link from "next/link"
 import router from "next/router"
 import jwt_decode from "jwt-decode"
 
@@ -97,8 +97,8 @@ export default function create() {
     <>
       <AdminNav />
       <div id="frame">
-        <div id="h">Create A Job</div>
-        <div className="form-group">
+      <div className="heading">Create a job</div>
+        <div>
           <input
             type="text"
             className="form-control"
@@ -165,22 +165,20 @@ export default function create() {
           {loading ? "Loading..." : "Submit"}
         </button>
         <div id="string" ref={ref}></div>
-        <div id="li"><Link href={`/jobs`}>
-      <a>see all jobs</a>
-    </Link></div>
+        <div id="li">
+          <Link href={`/jobs`}>
+            <a>see all jobs</a>
+          </Link>
+        </div>
       </div>
 
       <style jsx>{`
-        #frame {
-          padding: 15px;
-          align-items: center;
-        }
         #h {
           margin-top: 4px;
           padding-top: 0px;
-          margin-bottom: 10px;
+          margin-bottom: 30px;
           color: #3a3a3a;
-          font-size: 18x;
+          font-size: 20px;
           font-weight: 500;
         }
         .paragraph {
@@ -216,6 +214,9 @@ export default function create() {
           padding: 5px;
           box-shadow: -5px -5px 15px rgba(119, 119, 119, 0.041),
             5px 5px 12px rgba(49, 49, 49, 0.164);
+        }
+        #frame {
+padding-left: 20px;
         }
       `}</style>
     </>

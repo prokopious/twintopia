@@ -49,15 +49,15 @@ export default function Home({ data }) {
               <div className="date">{formatDate(item.createdAt)}</div>
               <div className="name">{item.name}</div>
               <div className="company">{item.company}</div>
-              <div className="email">{item.email}</div>
               <div className="phone">{item.phone}</div>
+              <div className="email">{item.email}</div>
+              <p className="notes">{item.notes}</p>
               <div className="u">
                 <a href={item.companyUrl}>{item.companyUrl}</a>
               </div>
               <div className="u">
                 <a href={item.personalUrl}>{item.personalUrl}</a>
               </div>
-              <p className="notes">{item.notes}</p>
               <div className="edit">
                 <Link href={`/editrecruiter/${item._id}`}>
                   <a>edit recruiter</a>
@@ -72,24 +72,20 @@ export default function Home({ data }) {
           margin-right: 5px;
           width: 70px;
         }
+        .heading {
+          padding-left: 20px;
+        }
         #evenBox {
           padding: 20px;
         }
         #oddBox {
           padding: 20px;
         }
-        #in {
-          padding-left: 20px;
-          padding-top: 20px;
-        }
+      
         .email {
-          margin-top: 5px;
+          margin-top: 0px;
         }
-        .notes {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          margin: 0;
-        }
+    
       `}</style>
     </>
   )

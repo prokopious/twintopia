@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react"
 import jwt_decode from "jwt-decode"
 import router from "next/router"
 import { useStatus, useLogin } from "../hooks/use-stuff"
-import PreviewWindow from "../components/PreviewWindow"
 
 export default function AdminNav() {
   const [token, setToken] = useState(null)
@@ -75,7 +74,6 @@ export default function AdminNav() {
                 <a>Jbs</a>
               </Link>
             </div>
-      
 
             <div ref={ref} id="l">
               <div onClick={logout}>
@@ -88,14 +86,18 @@ export default function AdminNav() {
 
       <style jsx>{`
         .navigation {
-          background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+          background-color:rgb(231, 231, 231);
           width: 100vw;
           padding: 20px;
+          padding-left: 20px;
+   
+          margin-right: auto;
+          margin-left: auto;
         }
 
         a {
           text-decoration: none;
-          background-color: #f3f3f3;
+      
           color: black;
         }
         #l {

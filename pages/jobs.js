@@ -32,19 +32,21 @@ export default function Home({ data }) {
       <AdminNav />
       {data && (
         <div id="grid">
-          <h3 className="heading">All jobs</h3>
-          <div id="in">
-            <button id="b" onClick={sortArray}>
-              {toggle ? "oldest" : "newest"}
-            </button>
-            <input
-              type="text"
-              placeholder="filter by keyword.."
-              onChange={e => filter(e)}
-            />
+          <div id="all">
+            <h3 className="heading">All jobs</h3>
+            <div id="in">
+              <button id="b" onClick={sortArray}>
+                {toggle ? "oldest" : "newest"}
+              </button>
+              <input
+                type="text"
+                placeholder="filter by keyword.."
+                onChange={e => filter(e)}
+              />
+            </div>
           </div>
           {filtered.map(item => (
-            <div id={data.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+            <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
               <div className="date">{formatDate(item.createdAt)}</div>
               <div className="title">{item.title}</div>
               <div className="company">{item.company}</div>
@@ -65,9 +67,6 @@ export default function Home({ data }) {
         </div>
       )}
       <style jsx>{`
-        #evenBox {
-          padding: 20px;
-        }
         #b {
           margin-right: 5px;
           width: 70px;
@@ -81,14 +80,8 @@ export default function Home({ data }) {
         .email {
           margin-top: 5px;
         }
-        #in {
+        .heading {
           padding-left: 20px;
-          padding-top: 20px;
-        }
-        .notes {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          margin: 0;
         }
       `}</style>
     </>

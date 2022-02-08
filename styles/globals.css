@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 html,
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(251, 251, 251);
+  margin: 0;
 }
 
 * {
@@ -11,18 +13,24 @@ body {
 .phone {
   color: gray;
 }
+#evenBox {
+  padding: 20px;
+}
 .notes {
-color: gray;
+  color: gray;
 }
 .name {
-  font-size: 18px;
-  color: rgb(36, 36, 36);
+  font-size: calc(16px + 0.5vw);
+  color: rgb(41, 41, 41);
+}
+.title {
+  font-size: calc(16px + 0.3vw);
+  color: rgb(41, 41, 41);
 }
 .heading {
-margin-bottom: 20px;
-margin-left: 20px;
-margin-top: 35px;
-
+  margin-bottom: 20px;
+  margin-top: 35px;
+  color: rgb(41, 41, 41);
   font-weight: normal;
   font-size: 25px;
 }
@@ -33,13 +41,29 @@ margin-top: 35px;
   padding-left: 5px;
 }
 .company {
-  color: rgb(77, 77, 77);
-  font-size: 16px;
-
+  color: rgb(87, 87, 87);
+  font-size: calc(18px + 0.2vw);
 }
 #oddBox {
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(231, 231, 231);
 }
 .date {
-  color: gray;
+  color: rgb(75, 75, 75);
+  font-size: calc(16px + 0.2vw);
+  margin-bottom: 18px;
+}
+
+.notes {
+  font-size: calc(14px + 0.4vw);
+  color: rgb(39, 39, 39);
+}
+.u {
+  overflow: hidden;
+}
+#in {
+  padding-top: 0;
+  margin-top: 0;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(192, 192, 192, 0.15);
 }
