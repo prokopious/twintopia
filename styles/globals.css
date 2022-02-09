@@ -20,7 +20,7 @@ body {
   color: gray;
 }
 .name {
-  font-size: calc(16px + 0.5vw);
+  font-size: calc(16px + 0.3vw);
   color: rgb(41, 41, 41);
 }
 .title {

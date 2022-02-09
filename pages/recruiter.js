@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react"
-import AdminNav from "../components/AdminNav"
 import axios from "axios"
-import Dropdown from "../components/Dropdown"
-import DropdownList from "../components/DropdownList"
+import Layout from '../components/Layout2'
 import router from "next/router"
 import jwt_decode from "jwt-decode"
 import Link from "next/link"
@@ -98,7 +96,7 @@ export default function create() {
 
   return (
     <>
-      <AdminNav />
+      <Layout>
       <div id="frame">
         <div className="heading">Create a recruiter</div>
         <div>
@@ -196,7 +194,7 @@ export default function create() {
           </Link>
         </div>
       </div>
-
+</Layout>
       <style jsx>{`
         #frame {
           padding-left: 20px;

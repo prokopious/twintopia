@@ -10,11 +10,7 @@ export default function Layout({ children }) {
         {children}
       </div>
       <style jsx>{`
-        #stick {
-          position: sticky;
-        
-        }
-
+    
         #layout {
           position: relative;
           display: grid;

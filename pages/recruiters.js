@@ -2,6 +2,7 @@ import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
 import { useState } from "react"
 import Link from "next/link"
+import Layout from "../components/Layout2"
 
 export default function Home({ data }) {
   const [filtered, setFiltered] = useState(
@@ -30,43 +31,44 @@ export default function Home({ data }) {
 
   return (
     <>
-      <AdminNav />
-      {data && (
-        <div id="grid">
-          <h3 className="heading">All recruiters</h3>
-          <div id="in">
-            <button id="b" onClick={sortArray}>
-              {toggle ? "oldest" : "newest"}
-            </button>
-            <input
-              type="text"
-              placeholder="filter by keyword.."
-              onChange={e => filter(e)}
-            />
-          </div>
-          {filtered.map(item => (
-            <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
-              <div className="date">{formatDate(item.createdAt)}</div>
-              <div className="name">{item.name}</div>
-              <div className="company">{item.company}</div>
-              <div className="phone">{item.phone}</div>
-              <div className="email">{item.email}</div>
-              <p className="notes">{item.notes}</p>
-              <div className="u">
-                <a href={item.companyUrl}>{item.companyUrl}</a>
-              </div>
-              <div className="u">
-                <a href={item.personalUrl}>{item.personalUrl}</a>
-              </div>
-              <div className="edit">
-                <Link href={`/editrecruiter/${item._id}`}>
-                  <a>edit recruiter</a>
-                </Link>
-              </div>
+      <Layout>
+        {data && (
+          <div id="grid">
+            <h3 className="heading">All recruiters</h3>
+            <div id="in">
+              <button id="b" onClick={sortArray}>
+                {toggle ? "oldest" : "newest"}
+              </button>
+              <input
+                type="text"
+                placeholder="filter by keyword.."
+                onChange={e => filter(e)}
+              />
             </div>
-          ))}
-        </div>
-      )}
+            {filtered.map(item => (
+              <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+                <div className="date">{formatDate(item.createdAt)}</div>
+                <div className="name">{item.name}</div>
+                <div className="company">{item.company}</div>
+                <div className="phone">{item.phone}</div>
+                <div className="email">{item.email}</div>
+                <p className="notes">{item.notes}</p>
+                <div className="u">
+                  <a href={item.companyUrl}>{item.companyUrl}</a>
+                </div>
+                <div className="u">
+                  <a href={item.personalUrl}>{item.personalUrl}</a>
+                </div>
+                <div className="edit">
+                  <Link href={`/editrecruiter/${item._id}`}>
+                    <a>edit recruiter</a>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </Layout>
       <style jsx>{`
         #b {
           margin-right: 5px;
@@ -81,11 +83,10 @@ export default function Home({ data }) {
         #oddBox {
           padding: 20px;
         }
-      
+
         .email {
           margin-top: 0px;
         }
-    
       `}</style>
     </>
   )

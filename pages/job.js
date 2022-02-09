@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react"
-import AdminNav from "../components/AdminNav"
+import Layout from '../components/layout2'
 import axios from "axios"
-import Dropdown from "../components/Dropdown"
-import DropdownList from "../components/DropdownList"
 import Link from "next/link"
 import router from "next/router"
 import jwt_decode from "jwt-decode"
@@ -95,9 +93,9 @@ export default function create() {
 
   return (
     <>
-      <AdminNav />
+      <Layout>
       <div id="frame">
-      <div className="heading">Create a job</div>
+        <div className="heading">Create a job</div>
         <div>
           <input
             type="text"
@@ -170,8 +168,7 @@ export default function create() {
             <a>see all jobs</a>
           </Link>
         </div>
-      </div>
-
+      </div></Layout>
       <style jsx>{`
         #h {
           margin-top: 4px;
@@ -216,7 +213,7 @@ export default function create() {
             5px 5px 12px rgba(49, 49, 49, 0.164);
         }
         #frame {
-padding-left: 20px;
+          padding-left: 20px;
         }
       `}</style>
     </>

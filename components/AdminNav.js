@@ -87,10 +87,10 @@ export default function AdminNav() {
       <style jsx>{`
         .navigation {
           background-color:rgb(231, 231, 231);
-          width: 100vw;
+      
           padding: 20px;
           padding-left: 20px;
-   
+   margin-top: 0;
           margin-right: auto;
           margin-left: auto;
         }

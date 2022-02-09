@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Link from "next/link"
-import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
+import Layout from "../components/Layout2"
 
 export default function Home({ data }) {
   const [filtered, setFiltered] = useState(
@@ -29,43 +29,45 @@ export default function Home({ data }) {
   }
   return (
     <>
-      <AdminNav />
-      {data && (
-        <div id="grid">
-          <div id="all">
-            <h3 className="heading">All jobs</h3>
-            <div id="in">
-              <button id="b" onClick={sortArray}>
-                {toggle ? "oldest" : "newest"}
-              </button>
-              <input
-                type="text"
-                placeholder="filter by keyword.."
-                onChange={e => filter(e)}
-              />
+      <Layout>
+       
+        {data && (
+          <div id="grid">
+            <div id="all">
+              <h3 className="heading">All jobs</h3>
+              <div id="in">
+                <button id="b" onClick={sortArray}>
+                  {toggle ? "oldest" : "newest"}
+                </button>
+                <input
+                  type="text"
+                  placeholder="filter by keyword.."
+                  onChange={e => filter(e)}
+                />
+              </div>
             </div>
+            {filtered.map(item => (
+              <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
+                <div className="date">{formatDate(item.createdAt)}</div>
+                <div className="title">{item.title}</div>
+                <div className="company">{item.company}</div>
+                <p className="notes">{item.notes}</p>
+                <div className="u">
+                  <a href={item.companyUrl}>{item.companyUrl}</a>
+                </div>
+                <div className="u">
+                  <a href={item.jobUrl}>{item.jobUrl}</a>
+                </div>
+                <div className="edit">
+                  <Link href={`/editjob/${item._id}`}>
+                    <a>edit job</a>
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
-          {filtered.map(item => (
-            <div id={filtered.indexOf(item) % 2 === 0 ? "evenBox" : "oddBox"}>
-              <div className="date">{formatDate(item.createdAt)}</div>
-              <div className="title">{item.title}</div>
-              <div className="company">{item.company}</div>
-              <p className="notes">{item.notes}</p>
-              <div className="u">
-                <a href={item.companyUrl}>{item.companyUrl}</a>
-              </div>
-              <div className="u">
-                <a href={item.jobUrl}>{item.jobUrl}</a>
-              </div>
-              <div className="edit">
-                <Link href={`/editjob/${item._id}`}>
-                  <a>edit job</a>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+        )}
+      </Layout>
       <style jsx>{`
         #b {
           margin-right: 5px;
