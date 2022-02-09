@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import axios from "axios"
-import AdminNav from "../components/AdminNav"
+import Layout from '../components/Layout2'
 import jwt_decode from "jwt-decode"
 import { useStatus, useLogin } from '../hooks/use-stuff'
 
@@ -69,7 +69,7 @@ export default function Login() {
   return (
     <>
       {" "}
-      <AdminNav />
+     <Layout>
       <div className="container">
         <main>
           <div id="string" ref={ref}></div>
@@ -114,7 +114,7 @@ export default function Login() {
             </button>
           </div>
         </main>
-      </div>
+      </div></Layout>
       <style jsx>{`
         .container {
           padding: 20px;

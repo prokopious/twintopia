@@ -30,7 +30,6 @@ export default function Home({ data }) {
   return (
     <>
       <Layout>
-       
         {data && (
           <div id="grid">
             <div id="all">
@@ -53,10 +52,14 @@ export default function Home({ data }) {
                 <div className="company">{item.company}</div>
                 <p className="notes">{item.notes}</p>
                 <div className="u">
-                  <a href={item.companyUrl}>{item.companyUrl}</a>
+                  <a href={item.companyUrl}>
+                    {item.companyUrl.length ? "company url" : ""}
+                  </a>
                 </div>
                 <div className="u">
-                  <a href={item.jobUrl}>{item.jobUrl}</a>
+                  <a href={item.jobUrl}>
+                    {item.jobUrl.length ? "job posting" : ""}
+                  </a>
                 </div>
                 <div className="edit">
                   <Link href={`/editjob/${item._id}`}>
@@ -85,6 +88,7 @@ export default function Home({ data }) {
         .heading {
           padding-left: 20px;
         }
+     
       `}</style>
     </>
   )

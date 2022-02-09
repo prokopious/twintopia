@@ -18,13 +18,15 @@ body {
 }
 .notes {
   color: gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .name {
-  font-size: calc(16px + 0.3vw);
+  font-size: calc(16px + 0.2vw);
   color: rgb(41, 41, 41);
 }
 .title {
-  font-size: calc(16px + 0.3vw);
+  font-size: calc(16px + 0.2vw);
   color: rgb(41, 41, 41);
 }
 .heading {
@@ -42,19 +44,19 @@ body {
 }
 .company {
   color: rgb(87, 87, 87);
-  font-size: calc(18px + 0.2vw);
+  font-size: calc(16px + 0.1vw);
 }
 #oddBox {
   background-color: rgb(231, 231, 231);
 }
 .date {
   color: rgb(75, 75, 75);
-  font-size: calc(16px + 0.2vw);
-  margin-bottom: 18px;
+  font-size: calc(16px + 0.1vw);
+  margin-bottom: 8px;
 }
 
 .notes {
-  font-size: calc(14px + 0.4vw);
+  font-size: calc(16px + 0.2vw);
   color: rgb(39, 39, 39);
 }
 .u {

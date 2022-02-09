@@ -54,10 +54,10 @@ export default function Home({ data }) {
                 <div className="email">{item.email}</div>
                 <p className="notes">{item.notes}</p>
                 <div className="u">
-                  <a href={item.companyUrl}>{item.companyUrl}</a>
+                  <a href={item.companyUrl}>{item.companyUrl.length ? "company url" : ""}</a>
                 </div>
                 <div className="u">
-                  <a href={item.personalUrl}>{item.personalUrl}</a>
+                  <a href={item.personalUrl}>{item.personalUrl.length ? "personal site" : ""}</a>
                 </div>
                 <div className="edit">
                   <Link href={`/editrecruiter/${item._id}`}>
