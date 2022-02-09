@@ -1,4 +1,3 @@
-import AdminNav from "../components/AdminNav"
 import formatDate from "../utils/format-date"
 import { useState } from "react"
 import Link from "next/link"

@@ -44,19 +44,19 @@ export default function AdminNav() {
       <div className="navigation">
         <div id="pad">
           <div id="linkGrid">
-            <div>
+            <div id="z">
               <Link href="/">
-                <a>Home</a>
+                <a>Jobs</a>
               </Link>
             </div>
-            {/* <div id="z">
-              <Link href="/create">
-                <a>Post</a>
+            <div id="z">
+              <Link href="/recruiters">
+                <a>Recruiters</a>
               </Link>
-            </div> */}
+            </div>
             <div id="z">
               <Link href="/job">
-                <a>Job</a>
+                <a>Jb</a>
               </Link>
             </div>
             <div id="z">
@@ -64,20 +64,10 @@ export default function AdminNav() {
                 <a>Rcrtr</a>
               </Link>
             </div>
-            <div id="z">
-              <Link href="/recruiters">
-                <a>Recs</a>
-              </Link>
-            </div>
-            <div id="z">
-              <Link href="/jobs">
-                <a>Jbs</a>
-              </Link>
-            </div>
 
             <div ref={ref} id="l">
               <div onClick={logout}>
-                <a>Logout</a>
+                <a></a>
               </div>
             </div>
           </div>
@@ -86,19 +76,17 @@ export default function AdminNav() {
 
       <style jsx>{`
         .navigation {
-          background-color:rgb(231, 231, 231);
-      
+          background-color: rgb(231, 231, 231);
           padding: 20px;
           padding-left: 20px;
-   margin-top: 0;
+          margin-top: 0;
           margin-right: auto;
           margin-left: auto;
         }
-
         a {
           text-decoration: none;
-      
           color: black;
+          padding-right: 8px;
         }
         #l {
           cursor: pointer;
@@ -110,18 +98,12 @@ export default function AdminNav() {
         #pad {
           padding-left: 0px;
         }
-
         #linkGrid {
-          display: grid;
-          grid-template-columns: 57px 38px 49px 48px 37px 42px;
-          grid-gap: 0px;
+          display: flex;
         }
 
         @media (max-width: 700px) {
           #linkGrid {
-            display: grid;
-            grid-template-columns: 46px 45px 38px 49px 48px;
-            grid-gap: 0px;
           }
         }
       `}</style>

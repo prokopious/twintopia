@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-import Layout from '../components/layout2'
+import Layout from '../components/Layout2'
 import axios from "axios"
 import Link from "next/link"
 import router from "next/router"

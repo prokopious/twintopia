@@ -68,7 +68,6 @@ export default function Login() {
   }
   return (
     <>
-      {" "}
      <Layout>
       <div className="container">
         <main>
